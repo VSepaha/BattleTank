@@ -1,0 +1,9 @@
+EscapeRoom/.vs/
+EscapeRoom/Binaries/
+EscapeRoom/Build/
+EscapeRoom/Intermediate/
+EscapeRoom/Saved/
+
+EscapeRoom/Content/StarterContent
+
+*.db
