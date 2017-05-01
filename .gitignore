@@ -1,9 +1,9 @@
-EscapeRoom/.vs/
-EscapeRoom/Binaries/
-EscapeRoom/Build/
-EscapeRoom/Intermediate/
-EscapeRoom/Saved/
+BattleTank/.vs/
+BattleTank/Binaries/
+BattleTank/Build/
+BattleTank/Intermediate/
+BattleTank/Saved/
 
-EscapeRoom/Content/StarterContent
+BattleTank/Content/StarterContent
 
 *.db
