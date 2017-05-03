@@ -4,7 +4,7 @@ BattleTank Game
 Second game created using unreal engine
 
 Concept
-- This is an open world game that allows head to head tank combat game.
+- This is an open world game that allows head to head tank combat.
 - There will be a terrain will be used for tactical advantage.
 - Much of the focus will be on the flow and feel of the game.
 
