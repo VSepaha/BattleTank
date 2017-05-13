@@ -40,6 +40,6 @@ void ATank::AimAt(FVector HitLocation) {
 	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 
-void ATank::SetBarrelReferenence(UStaticMeshComponent * BarrelToSet) {
+void ATank::SetBarrelReferenence(UTankBarrel* BarrelToSet) {
 	TankAimingComponent->SetBarrelReference(BarrelToSet);
 }
