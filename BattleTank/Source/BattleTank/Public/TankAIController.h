@@ -19,4 +19,8 @@ private:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
+	// How can the AI tank get to the controller
+	UPROPERTY(EditDefaultsOnly)
+	float AcceptanceRadius = 3000;
+
 };

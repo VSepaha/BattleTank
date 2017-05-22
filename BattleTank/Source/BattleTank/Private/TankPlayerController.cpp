@@ -7,13 +7,6 @@
 
 void ATankPlayerController::BeginPlay() {
 	Super::BeginPlay();
-
-	FString PlayerControllerName = GetControlledTank()->GetName();
-	if (GetControlledTank() != nullptr) {
-		UE_LOG(LogTemp, Warning, TEXT("PlayerController: %s"), *PlayerControllerName);
-	} else {
-		UE_LOG(LogTemp, Error, TEXT("No PlayerController Found!"));
-	}
 }
 
 void ATankPlayerController::Tick(float DeltaTime) {

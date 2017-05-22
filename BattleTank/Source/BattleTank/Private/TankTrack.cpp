@@ -5,8 +5,12 @@
 
 
 void UTankTrack::SetThrottle(float Throttle) {
-	// auto Time = GetWorld()->GetTimeSeconds();
-	auto Name = GetName();
-	UE_LOG(LogTemp, Warning, TEXT("%s Throttle: %f"), *Name, Throttle);
+	FVector AppliedForce = GetForwardVector() * Throttle * TrackMaxDrivingForce;
+	FVector ForceLocation = GetComponentLocation();
+
+	// Get the root component
+	// tank component is a scene component that we will cast as a primitive scene component
+	UPrimitiveComponent* TankRoot = Cast<UPrimitiveComponent>(GetOwner()->GetRootComponent()); 
+	TankRoot->AddForceAtLocation(AppliedForce, ForceLocation);
 }
 
