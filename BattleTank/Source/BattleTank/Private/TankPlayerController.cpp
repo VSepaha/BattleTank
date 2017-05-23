@@ -1,12 +1,21 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BattleTank.h"
+#include "TankAimingComponent.h"
 #include "Tank.h"
 #include "TankPlayerController.h"
 
 
 void ATankPlayerController::BeginPlay() {
 	Super::BeginPlay();
+
+	auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
+	if (ensure(AimingComponent)) {
+		FoundAimingComponent(AimingComponent);
+	}
+	else {
+		UE_LOG(LogTemp, Warning, TEXT("PlayerController can't find aiming component in BeginPlay"));
+	}
 }
 
 void ATankPlayerController::Tick(float DeltaTime) {
@@ -20,7 +29,7 @@ ATank* ATankPlayerController::GetControlledTank() const {
 }
 
 void ATankPlayerController::AimTowardsCrossHair() {
-	if (!GetControlledTank()) return; // If no tank then there is no point of this function
+	if (!ensure(GetControlledTank())) return; // If no tank then there is no point of this function
 	
 	FVector OutHitLocation; // OUT parameter
 	if (GetSightRayHitLocation(OutHitLocation)) { // It is going to line trace (ray cast)

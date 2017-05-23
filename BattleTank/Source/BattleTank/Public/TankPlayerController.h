@@ -6,6 +6,7 @@
 #include "TankPlayerController.generated.h" // This has to be the last include
 
 class ATank;
+class UTankAimingComponent;
 
 /**
  * 
@@ -16,8 +17,6 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 	GENERATED_BODY()
 	
 private:
-	ATank* GetControlledTank() const;
-
 	//Dont forget the virtual keyword, otherwise it won't work for some reason
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
@@ -42,5 +41,12 @@ private:
 	// The measuring unit in Unreal is cm, so if we want 10km 
 	UPROPERTY(EditDefaultsOnly)
 	float LineTraceRange = 1000000.0;
+
+protected:
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	ATank* GetControlledTank() const;
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
+	void FoundAimingComponent(UTankAimingComponent* AimingCompRef);
 
 };
