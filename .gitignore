@@ -4,6 +4,7 @@ BattleTank/Build/
 BattleTank/Intermediate/
 BattleTank/Saved/
 
-BattleTank/Content/
+BattleTank/Content/StarterContent
+BattleTank/Content/UI
 
 *.db
