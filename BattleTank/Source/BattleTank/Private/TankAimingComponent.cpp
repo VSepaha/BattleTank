@@ -16,25 +16,20 @@ UTankAimingComponent::UTankAimingComponent()
 	bWantsBeginPlay = true;
 	PrimaryComponentTick.bCanEverTick = true;
 
-	UE_LOG(LogTemp, Warning, TEXT("CREATED"))
-
 	// ...
 }
 
 void UTankAimingComponent::BeginPlay() {
 	Super::BeginPlay();
-	LastFireTime = FPlatformTime::Seconds(); 
+	LastFireTime = GetWorld()->TimeSeconds;
 }
 
 
-// For some reason tick component is not being called
 void UTankAimingComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) {
+	
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	float Delta = (FPlatformTime::Seconds() - LastFireTime);
-	UE_LOG(LogTemp, Warning, TEXT("Tick"))
 		
-	if (Delta < ReloadTimeInSeconds) {
+	if ((GetWorld()->TimeSeconds - LastFireTime) < ReloadTimeInSeconds) {
 		FiringState = EFiringState::Reloading;
 	}
 	else if (IsBarrelMoving()) {
@@ -55,7 +50,7 @@ bool UTankAimingComponent::IsBarrelMoving() {
 
 	if (!ensure(Barrel)) return false;
 
-	FVector BarrelForward = Barrel->GetForwardVector();
+	FVector BarrelForward = Barrel->GetForwardVector().GetSafeNormal();
 	return !BarrelForward.Equals(AimDirection, 0.01);
 };
 
@@ -115,6 +110,6 @@ void UTankAimingComponent::Fire() {
 			);
 
 		Projectile->LaunchProjectile(LaunchSpeed);
-		LastFireTime = FPlatformTime::Seconds();
+		LastFireTime = GetWorld()->TimeSeconds;
 	}
 }

@@ -21,6 +21,8 @@ void ATankPlayerController::Tick(float DeltaTime) {
 
 void ATankPlayerController::AimTowardsCrossHair() {
 
+	if (!GetPawn()) return; // If not possessing
+
 	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
 	if (!ensure(AimingComponent)) return;
 	
