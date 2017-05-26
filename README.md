@@ -1,6 +1,6 @@
 BattleTank Game
 
-== In Progress Lecture 176==
+== In Progress ==
 Second game created using unreal engine
 
 Concept
