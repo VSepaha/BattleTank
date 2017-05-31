@@ -14,3 +14,25 @@ ATank::ATank()
 void ATank::BeginPlay() {
 	Super::BeginPlay();
 }
+
+float ATank::TakeDamage(float DamageAmount, struct FDamageEvent const &DamageEvent, class AController* EventInstigator, AActor* DamageCauser) {
+	
+	// Round the incoming damage to nearest int
+	int32 DamagePoints = FPlatformMath::RoundToInt(DamageAmount);
+
+	// Clamp the amount of damage possible not to exceed current health
+	int32 DamageToApply = FMath::Clamp<float>(DamagePoints, 0, CurrentHealth);
+
+	CurrentHealth -= DamageToApply;
+	if (CurrentHealth <= 0) {
+		UE_LOG(LogTemp, Warning, TEXT("%s is dead"), *GetName())
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("DamageAmount = %f, DamageToApply = %d"), DamageAmount, DamageToApply)
+	
+	return DamageToApply;
+}
+
+float ATank::GetHealthPercentage() const {
+	return (float)CurrentHealth / (float)StartingHealth;
+}
