@@ -17,8 +17,13 @@ private:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void SetPawn(APawn* InPawn) override;
+
 	// How close the AI tank get to the controller
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	float AcceptanceRadius = 8000;
+
+	UFUNCTION()
+	void OnPossessedTankDeath();
 
 };

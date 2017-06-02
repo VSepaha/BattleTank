@@ -1,6 +1,5 @@
 BattleTank Game
 
-== In Progress ==
 Second game created using unreal engine
 
 Concept
@@ -12,7 +11,7 @@ Rules
 - The player can move anywhere on the terrain, which is surrounded by mountains.
 - Both players will start with finite health and ammo.
 - Each direct hit takes away health.
-- The last play that remains standing wins.
+- The last player that remains standing wins.
 
 Requirements
 - SFX
@@ -21,3 +20,4 @@ Requirements
 - Music
 
 This game was created following the udemy unreal course.
+GAME COMPLETE

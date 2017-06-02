@@ -19,6 +19,7 @@ private:
 	//Dont forget the virtual keyword, otherwise it won't work for some reason
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
+	virtual void SetPawn(APawn* InPawn) override;
 	
 	// Start the tank moving the barrel so that a shot would hit where the 
 	// crosshair intersects the world
@@ -40,6 +41,9 @@ private:
 	// The measuring unit in Unreal is cm, so if we want 10km 
 	UPROPERTY(EditDefaultsOnly)
 	float LineTraceRange = 1000000.0;
+
+	UFUNCTION()
+	void OnPossessedTankDeath();
 
 protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")

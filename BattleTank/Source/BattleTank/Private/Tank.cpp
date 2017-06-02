@@ -13,9 +13,12 @@ ATank::ATank()
 
 void ATank::BeginPlay() {
 	Super::BeginPlay();
+	CurrentHealth = StartingHealth;
 }
 
 float ATank::TakeDamage(float DamageAmount, struct FDamageEvent const &DamageEvent, class AController* EventInstigator, AActor* DamageCauser) {
+
+	UE_LOG(LogTemp, Warning, TEXT("Current Health = %d"), CurrentHealth)
 	
 	// Round the incoming damage to nearest int
 	int32 DamagePoints = FPlatformMath::RoundToInt(DamageAmount);
@@ -25,11 +28,8 @@ float ATank::TakeDamage(float DamageAmount, struct FDamageEvent const &DamageEve
 
 	CurrentHealth -= DamageToApply;
 	if (CurrentHealth <= 0) {
-		UE_LOG(LogTemp, Warning, TEXT("%s is dead"), *GetName())
+		OnDeath.Broadcast();
 	}
-
-	UE_LOG(LogTemp, Warning, TEXT("DamageAmount = %f, DamageToApply = %d"), DamageAmount, DamageToApply)
-	
 	return DamageToApply;
 }
 
